@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Gentle bed exercises with short video clips.">
+<meta name="theme-color" content="#FFFBEB">
+<title>Bed Exercises</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='14' fill='%23047857' stroke='%230F172A' stroke-width='5'/%3E%3Cpath d='M25 19v26l20-13z' fill='%23FCD34D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://i.ytimg.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=Varela+Round&display=swap" rel="stylesheet">
+<style>
+/* Benefits (Marko/Memphis), single light world: buttercream canvas, ink borders, solid offset shadows, green spine.
+   Layout: one mobile column; hero, daily plan, one session, five exercise sections (cards with in-page players), then the bottom panels. */
+:root {
+  --anchor: #047857; --ui-green: #10B981; --depth: #064E3B; --green-soft: #D1FAE5; --green-mint: #6EE7B7;
+  --canvas: #FFFBEB; --paper: #FFFFFF; --soft: #FEF3C7;
+  --ink: #0F172A; --body: #334155; --muted: #475569;
+  --sunshine: #FCD34D; --coral: #FB7185; --coral-soft: #FFE4E6;
+  --font-display: 'Rubik', system-ui, 'Segoe UI', Arial, sans-serif;
+  --font-body: 'Varela Round', system-ui, 'Segoe UI', Arial, sans-serif;
+  --border: 2.5px solid var(--ink); --border-bold: 3px solid var(--ink);
+  --shadow-sm: 3px 3px 0 0 var(--ink); --shadow-md: 5px 5px 0 0 var(--ink); --shadow-lg: 8px 8px 0 0 var(--ink);
+  --block: 0 5px 0 0 var(--depth); --block-hover: 0 7px 0 0 var(--depth); --block-active: 0 2px 0 0 var(--depth);
+  --ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; background: var(--canvas); color: var(--body); font-family: var(--font-body); font-size: 18px; line-height: 1.55; overflow-x: hidden; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 16px; padding-block: 0 56px; }
+h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; text-wrap: balance; }
+a { color: var(--anchor); }
+:is(a, button, label):focus-visible { outline: 3px solid var(--ui-green); outline-offset: 3px; border-radius: 12px; }
+svg.i { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* hero */
+.hero { position: relative; overflow: hidden; padding-block: 28px 62px; }
+.hero::before { content: ""; position: absolute; top: -70px; right: -60px; width: 190px; height: 190px; border-radius: 50%;
+  background: var(--green-soft); border: var(--border-bold); }
+.hero::after { content: ""; position: absolute; bottom: -34px; right: 34px; width: 74px; height: 74px; transform: rotate(18deg);
+  background: var(--sunshine); border: var(--border-bold); }
+.hero > * { position: relative; z-index: 1; }
+.kicker { display: inline-flex; align-items: center; gap: 8px; background: var(--sunshine); color: var(--ink); border: var(--border);
+  border-radius: 999px; padding: 6px 14px; font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .3px; box-shadow: var(--shadow-sm); }
+.hero h1 { font-size: clamp(40px, 11vw, 64px); font-weight: 900; line-height: 1.02; letter-spacing: -1.2px; margin-block: 18px 12px; }
+.hero h1 .hl { display: inline-block; background: var(--anchor); color: #fff; padding: 0 12px 4px; border: var(--border-bold); border-radius: 14px; box-shadow: 5px 5px 0 0 var(--ink); }
+.hero p { margin: 0; max-width: 34ch; font-size: 19px; color: var(--ink); }
+
+/* panels */
+.panel { background: var(--paper); border: var(--border-bold); border-radius: 20px; box-shadow: var(--shadow-md); padding: 18px; margin-block: 18px 0; }
+.panel h2 { font-size: 22px; font-weight: 800; display: flex; align-items: flex-start; gap: 10px; }
+.panel h2 svg.i { width: 24px; height: 24px; margin-top: 2px; }
+.panel--goal { background: var(--green-soft); }
+.goal-line { font-family: var(--font-display); font-weight: 900; font-size: 28px; color: var(--depth); line-height: 1.1; }
+.goal-sub { margin: 6px 0 0; color: var(--ink); }
+.times { margin: 8px 0 0; color: var(--depth); font-family: var(--font-display); font-weight: 700; font-size: 17px; }
+.today { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
+.today label { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 68px; cursor: pointer;
+  background: var(--paper); border: var(--border); border-radius: 14px; box-shadow: var(--shadow-sm); user-select: none;
+  font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--ink); transition: transform .15s var(--ease), box-shadow .15s var(--ease), background .15s, color .15s; }
+.today label small { font-family: var(--font-body); font-weight: 400; font-size: 14px; color: var(--muted); }
+.today input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.today label.on { background: var(--anchor); color: #fff; transform: translate(2px, 2px); box-shadow: 1px 1px 0 0 var(--ink); }
+.today label.on small { color: var(--green-mint); }
+.today-note { margin: 12px 0 0; font-size: 16px; color: var(--depth); font-weight: 700; }
+
+.panel--session { background: var(--sunshine); box-shadow: var(--shadow-lg); }
+.steps { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.steps a { display: flex; align-items: center; gap: 12px; min-height: 56px; background: var(--paper); border: var(--border); border-radius: 14px; padding: 10px 12px; color: var(--ink); text-decoration: none; }
+.steps a:active { transform: translate(1px, 1px); }
+.steps .n { flex: none; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: var(--anchor); color: #fff;
+  border: var(--border); font-family: var(--font-display); font-weight: 800; }
+.steps .t { flex: 1; min-width: 0; }
+.steps .min { flex: none; font-family: var(--font-display); font-weight: 700; font-size: 15px; background: var(--soft); border: 2px solid var(--ink); border-radius: 999px; padding: 2px 10px; white-space: nowrap; }
+.fine { margin: 12px 0 0; font-size: 17px; color: var(--ink); }
+.fine b { font-family: var(--font-display); }
+
+/* sections */
+.sec { margin-top: 40px; scroll-margin-top: 12px; }
+.sec__head { display: flex; gap: 14px; align-items: flex-start; }
+.sec__num { flex: none; width: 52px; height: 52px; display: grid; place-items: center; background: var(--sunshine); color: var(--ink);
+  border: var(--border-bold); border-radius: 16px; box-shadow: var(--shadow-sm); font-family: var(--font-display); font-weight: 900; font-size: 26px; }
+.sec--later .sec__num { background: var(--paper); }
+.sec__head > div { min-width: 0; }
+.sec h2 { font-size: clamp(25px, 6.5vw, 34px); font-weight: 900; letter-spacing: -.6px; line-height: 1.1; }
+.sec__lead { margin: 6px 0 0; color: var(--body); }
+.src { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 14px; font-size: 15px; }
+.src__chip { display: inline-flex; align-items: center; gap: 6px; background: var(--paper); border: 2px solid var(--ink); border-radius: 999px; padding: 4px 12px;
+  font-family: var(--font-display); font-weight: 700; color: var(--ink); }
+.grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 14px; }
+@media (min-width: 680px) { .grid { grid-template-columns: 1fr 1fr; } }
+.ex { background: var(--paper); border: var(--border); border-radius: 18px; box-shadow: var(--shadow-sm); padding: 14px 14px 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.tag { align-self: flex-start; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: .5px; text-transform: uppercase;
+  color: var(--depth); background: var(--green-soft); border: 2px solid var(--anchor); border-radius: 999px; padding: 1px 10px; }
+.ex h3 { font-size: 22px; font-weight: 800; line-height: 1.2; }
+.ex p { margin: 0; }
+.ex--star { background: var(--soft); }
+.ex--star .tag { background: var(--sunshine); color: var(--ink); border-color: var(--ink); }
+
+/* in-page player: 16:9 box; facade (thumbnail) until tapped, then the iframe */
+.vid { position: relative; width: 100%; height: 0; padding-top: 56.25%; margin-top: 4px; border: var(--border); border-radius: 14px; overflow: hidden; background: var(--ink); }
+.vid > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.vid iframe { border: 0; }
+.facade { display: block; padding: 0; margin: 0; border: 0; cursor: pointer; background: var(--ink); color: inherit; font: inherit; -webkit-tap-highlight-color: transparent; }
+.facade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.facade::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,23,42,.05) 40%, rgba(15,23,42,.55) 100%); }
+.facade .play { position: absolute; z-index: 1; left: 50%; top: 50%; width: 78px; height: 78px; margin: -39px 0 0 -39px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--anchor); color: #fff; border: var(--border-bold); box-shadow: var(--shadow-sm); transition: transform .16s var(--ease); }
+.facade .play svg.i { width: 34px; height: 34px; fill: currentColor; stroke: none; margin-left: 4px; }
+.facade:hover .play { transform: scale(1.06); }
+.facade:active .play { transform: scale(.94); }
+.facade .range, .facade .secs { position: absolute; z-index: 1; bottom: 10px; font-family: var(--font-display); font-weight: 800; color: var(--ink);
+  border: 2px solid var(--ink); border-radius: 999px; padding: 2px 12px; line-height: 1.4; }
+.facade .range { left: 10px; background: var(--sunshine); font-size: 18px; }
+.facade .secs { right: 10px; background: var(--paper); font-size: 15px; font-weight: 700; }
+.again { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 9px 18px; cursor: pointer;
+  background: var(--anchor); color: #fff; border: var(--border); border-radius: 999px; box-shadow: var(--block);
+  font-family: var(--font-body); font-size: 17px; transition: transform .16s var(--ease), box-shadow .16s var(--ease), background .16s; }
+.again[hidden] { display: none; }
+.again:hover { background: var(--depth); transform: translateY(-2px); box-shadow: var(--block-hover); }
+.again:active { transform: translateY(3px); box-shadow: var(--block-active); }
+.full { margin: 14px 0 0; font-size: 16px; color: var(--muted); }
+.full a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 700; }
+.full a svg.i { width: 17px; height: 17px; }
+
+/* bottom panels */
+.list { margin: 10px 0 0; padding-left: 22px; color: var(--ink); }
+.list li { margin: 6px 0; }
+.panel--stop { background: var(--coral-soft); border-color: var(--ink); }
+.panel--stop h2 { color: #9F1239; }
+.stop-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.stop-list li { background: var(--paper); border: 2px solid var(--ink); border-radius: 999px; padding: 6px 12px; color: var(--ink); font-size: 17px; }
+.panel--film { background: var(--depth); color: #fff; border-color: var(--ink); }
+.panel--film h2 { color: #fff; }
+.quote { font-family: var(--font-display); font-weight: 800; font-size: clamp(21px, 5.5vw, 27px); line-height: 1.3; color: #fff; margin: 12px 0; }
+.quote::before { content: "\201C"; color: var(--sunshine); margin-right: 2px; }
+.quote::after { content: "\201D"; color: var(--sunshine); margin-left: 2px; }
+.film-note { margin: 0; color: var(--green-mint); }
+.panel--family { background: var(--soft); }
+.panel--family p { margin: 8px 0 0; color: var(--ink); }
+.btn-go { margin-top: 12px; display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 9px 18px;
+  background: var(--anchor); color: #fff; border: var(--border); border-radius: 999px; box-shadow: var(--block); text-decoration: none; font-size: 17px; }
+.btn-go:active { transform: translateY(3px); box-shadow: var(--block-active); }
+.logline { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--ink); background: var(--soft); border: 2px solid var(--ink);
+  border-radius: 14px; padding: 12px 14px; margin: 12px 0; user-select: all; }
+.btn-copy { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 9px 18px; cursor: pointer;
+  background: var(--paper); color: var(--ink); border: var(--border); border-radius: 999px; box-shadow: var(--shadow-sm);
+  font-family: var(--font-body); font-size: 17px; transition: transform .16s var(--ease), box-shadow .16s var(--ease), background .16s; }
+.btn-copy:hover { background: var(--sunshine); transform: translate(-1px, -1px); box-shadow: 4px 4px 0 0 var(--ink); }
+.btn-copy:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 0 var(--ink); }
+.foot { margin-top: 36px; font-size: 15px; color: var(--muted); }
+#toast { position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); max-width: 420px; margin: 0 auto; text-align: center;
+  background: var(--depth); color: #fff; border: var(--border); border-radius: 14px; padding: 12px 16px; box-shadow: var(--shadow-md); opacity: 0; transition: opacity .2s; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <span class="kicker">For Joy · updated 04.10.2026</span>
+  <h1><span class="hl">Bed exercises</span></h1>
+  <p>Tap a picture. The video plays only that exercise, right here on the page.</p>
+</header>
+
+<section class="panel panel--goal" aria-labelledby="goal-h">
+  <h2 id="goal-h" class="goal-line">1 hour a day, in total</h2>
+  <p class="goal-sub">4 sessions of 15 minutes, or 3 sessions of 20 minutes. Start shorter if she is tired, and add a little every day.</p>
+  <p class="times">Example times: 10:00 · 13:00 · 16:00 · 19:00</p>
+  <div class="today" id="today" aria-label="Today's sessions">
+    <label for="s1">1<small>session</small><input type="checkbox" id="s1" data-n="1"></label>
+    <label for="s2">2<small>session</small><input type="checkbox" id="s2" data-n="2"></label>
+    <label for="s3">3<small>session</small><input type="checkbox" id="s3" data-n="3"></label>
+    <label for="s4">4<small>session</small><input type="checkbox" id="s4" data-n="4"></label>
+  </div>
+  <p class="today-note" id="todayNote">Tap a box after each session today.</p>
+</section>
+
+<section class="panel panel--session" aria-labelledby="session-h">
+  <h2 id="session-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"/><path d="M12 7v5l3 3"/></svg>One session, 15 minutes</h2>
+  <ol class="steps">
+    <li><a href="#sec1"><span class="n">1</span><span class="t">You move her hands and arms</span><span class="min">3 min</span></a></li>
+    <li><a href="#sec2"><span class="n">2</span><span class="t">She moves her hands and arms, you help</span><span class="min">5 min</span></a></li>
+    <li><a href="#sec3"><span class="n">3</span><span class="t">Legs</span><span class="min">5 min</span></a></li>
+    <li><a href="#sec4"><span class="n">4</span><span class="t">Gentle finish</span><span class="min">2 min</span></a></li>
+  </ol>
+  <p class="fine"><b>20-minute session:</b> more repetitions, and add the leg movements from section 1.<br>
+  <b>Every time:</b> if there is a tube, a bag or a line, check it before you start and follow the care team&#x27;s instructions. On an arm with a line, only small, gentle movements.</p>
+</section>
+
+<!-- 1 -->
+<section class="sec" id="sec1" aria-labelledby="sec1-h">
+  <div class="sec__head"><span class="sec__num">1</span><div>
+    <h2 id="sec1-h">You move her</h2>
+    <p class="sec__lead">She relaxes. Hold the arm or leg above and below the joint and move it slowly. Up to 10 times each side. Stop when you feel resistance.</p>
+  </div></div>
+  <div class="src"><span class="src__chip">MD Anderson Cancer Center · 3:56</span></div>
+  <div class="grid">
+    <article class="ex"><span class="tag">Hands</span><h3 id="sec1-1-h">Fist, then open</h3><p>Gently bend the fingers into a fist, then straighten them fully.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="47" data-e="55" aria-label="Play Fist, then open, 0:47 to 0:55">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">0:47–0:55</span><span class="secs">8 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Arms</span><h3 id="sec1-2-h">Elbow bend</h3><p>Hold the elbow and the wrist. Bring the hand toward the shoulder, then straighten.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="55" data-e="72" aria-label="Play Elbow bend, 0:55 to 1:12">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">0:55–1:12</span><span class="secs">17 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Shoulders</span><h3 id="sec1-3-h">Forearm in and out</h3><p>Arm a little away from her side, elbow bent. Turn the forearm toward the body, then away.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="72" data-e="93" aria-label="Play Forearm in and out, 1:12 to 1:33">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">1:12–1:33</span><span class="secs">21 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Shoulders</span><h3 id="sec1-4-h">Arm up to the ceiling</h3><p>Hold the elbow and the wrist. Lift the arm up toward her head, then lower it to her side.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="93" data-e="110" aria-label="Play Arm up to the ceiling, 1:33 to 1:50">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">1:33–1:50</span><span class="secs">17 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Shoulders</span><h3 id="sec1-5-h">Arm out to the side</h3><p>Arm straight and supported. Move it out to the side, then back.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="110" data-e="130" aria-label="Play Arm out to the side, 1:50 to 2:10">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">1:50–2:10</span><span class="secs">20 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Legs</span><h3 id="sec1-6-h">Ankle</h3><p>Hold the heel. Gently move the toes up toward her head.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="130" data-e="149" aria-label="Play Ankle, 2:10 to 2:29">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">2:10–2:29</span><span class="secs">19 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Legs</span><h3 id="sec1-7-h">Knee bend</h3><p>Hold under the knee and the ankle. Bend the knee, then straighten. Small bend only.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="149" data-e="174" aria-label="Play Knee bend, 2:29 to 2:54">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">2:29–2:54</span><span class="secs">25 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Legs</span><h3 id="sec1-8-h">Hip bend</h3><p>Bring the leg a little toward the chest, then back. Small bend only.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="174" data-e="186" aria-label="Play Hip bend, 2:54 to 3:06">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">2:54–3:06</span><span class="secs">12 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Legs</span><h3 id="sec1-9-h">Leg out to the side</h3><p>Leg straight and supported. Move it away from the body, then back.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="186" data-e="195" aria-label="Play Leg out to the side, 3:06 to 3:15">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">3:06–3:15</span><span class="secs">9 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Legs</span><h3 id="sec1-10-h">Leg turns in and out</h3><p>Knee bent, leg supported. Turn the leg in, then out.</p>
+      <div class="vid"><button class="facade" type="button" data-id="yuTKoJWT3Kg" data-s="195" data-e="236" aria-label="Play Leg turns in and out, 3:15 to 3:56">
+        <img src="https://i.ytimg.com/vi/yuTKoJWT3Kg/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">3:15–3:56</span><span class="secs">41 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+  </div>
+  <p class="full"><a href="https://www.youtube.com/watch?v=yuTKoJWT3Kg" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/></svg>Open the full video on YouTube</a></p>
+</section>
+
+<!-- 2 -->
+<section class="sec" id="sec2" aria-labelledby="sec2-h">
+  <div class="sec__head"><span class="sec__num">2</span><div>
+    <h2 id="sec2-h">She moves her hands and arms, you help</h2>
+    <p class="sec__lead">Raise the head of the bed so she sits up. Start with 5 of each, then 10. Help her arm if she cannot do it alone.</p>
+  </div></div>
+  <div class="src"><span class="src__chip">More Life Health, physiotherapist</span></div>
+  <div class="grid">
+    <article class="ex"><span class="tag">Hands</span><h3 id="sec2-1-h">Wrist circles</h3><p>Slow circles one way, then the other way.</p>
+      <div class="vid"><button class="facade" type="button" data-id="rXSXwfi9Zzc" data-s="411" data-e="425" aria-label="Play Wrist circles, 6:51 to 7:05">
+        <img src="https://i.ytimg.com/vi/rXSXwfi9Zzc/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">6:51–7:05</span><span class="secs">14 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Hands</span><h3 id="sec2-2-h">Open and close the hands</h3><p>Open the hands wide, then close them.</p>
+      <div class="vid"><button class="facade" type="button" data-id="rXSXwfi9Zzc" data-s="425" data-e="457" aria-label="Play Open and close the hands, 7:05 to 7:37">
+        <img src="https://i.ytimg.com/vi/rXSXwfi9Zzc/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">7:05–7:37</span><span class="secs">32 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Hands</span><h3 id="sec2-3-h">Finger to thumb</h3><p>Touch each finger to the thumb, slowly, then open the hand.</p>
+      <div class="vid"><button class="facade" type="button" data-id="rXSXwfi9Zzc" data-s="457" data-e="494" aria-label="Play Finger to thumb, 7:37 to 8:14">
+        <img src="https://i.ytimg.com/vi/rXSXwfi9Zzc/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">7:37–8:14</span><span class="secs">37 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex ex--star" id="arms-up"><span class="tag">Family favorite</span><h3 id="sec2-4-h">Arms up and down</h3><p>Thumbs up. Lift the arms in front as far as is comfortable, then slowly down. Family members can do this one with her too.</p>
+      <div class="vid"><button class="facade" type="button" data-id="rXSXwfi9Zzc" data-s="494" data-e="565" aria-label="Play Arms up and down, 8:14 to 9:25">
+        <img src="https://i.ytimg.com/vi/rXSXwfi9Zzc/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">8:14–9:25</span><span class="secs">71 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Arms</span><h3 id="sec2-5-h">Arms out to the side</h3><p>Lift the arms out to the side, then slowly down.</p>
+      <div class="vid"><button class="facade" type="button" data-id="rXSXwfi9Zzc" data-s="565" data-e="644" aria-label="Play Arms out to the side, 9:25 to 10:44">
+        <img src="https://i.ytimg.com/vi/rXSXwfi9Zzc/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">9:25–10:44</span><span class="secs">79 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Arms</span><h3 id="sec2-6-h">Reach to the ceiling</h3><p>Reach up, hold a moment, bring the arms down.</p>
+      <div class="vid"><button class="facade" type="button" data-id="rXSXwfi9Zzc" data-s="644" data-e="688" aria-label="Play Reach to the ceiling, 10:44 to 11:28">
+        <img src="https://i.ytimg.com/vi/rXSXwfi9Zzc/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">10:44–11:28</span><span class="secs">44 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Arms</span><h3 id="sec2-7-h">Bend the elbows</h3><p>Arms straight, curl the hands up, then down.</p>
+      <div class="vid"><button class="facade" type="button" data-id="rXSXwfi9Zzc" data-s="688" data-e="742" aria-label="Play Bend the elbows, 11:28 to 12:22">
+        <img src="https://i.ytimg.com/vi/rXSXwfi9Zzc/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">11:28–12:22</span><span class="secs">54 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+  </div>
+  <p class="full"><a href="https://www.youtube.com/watch?v=rXSXwfi9Zzc&amp;t=411s" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/></svg>Open the full video on YouTube</a> (our part starts at 6:51)</p>
+</section>
+
+<!-- 3 -->
+<section class="sec" id="sec3" aria-labelledby="sec3-h">
+  <div class="sec__head"><span class="sec__num">3</span><div>
+    <h2 id="sec3-h">Legs</h2>
+    <p class="sec__lead">About 5 times each. Even a tiny movement is good. Help her if she cannot do it alone.</p>
+  </div></div>
+  <div class="src"><span class="src__chip">NewYork-Presbyterian Hospital · 2:21</span></div>
+  <div class="grid">
+    <article class="ex"><span class="tag">Thighs</span><h3 id="sec3-1-h">Knee down into the bed</h3><p>Squeeze the thigh and push the back of the knee into the bed. Hold 3 to 5 seconds, relax.</p>
+      <div class="vid"><button class="facade" type="button" data-id="ZTnYVDn7RD4" data-s="4" data-e="35" aria-label="Play Knee down into the bed, 0:04 to 0:35">
+        <img src="https://i.ytimg.com/vi/ZTnYVDn7RD4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">0:04–0:35</span><span class="secs">31 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Ankles</span><h3 id="sec3-2-h">Ankle pumps</h3><p>Toes up toward her nose, then point them down.</p>
+      <div class="vid"><button class="facade" type="button" data-id="ZTnYVDn7RD4" data-s="35" data-e="62" aria-label="Play Ankle pumps, 0:35 to 1:02">
+        <img src="https://i.ytimg.com/vi/ZTnYVDn7RD4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">0:35–1:02</span><span class="secs">27 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Bottom</span><h3 id="sec3-3-h">Squeeze the bottom</h3><p>Squeeze the bottom muscles together, hold a few seconds, relax.</p>
+      <div class="vid"><button class="facade" type="button" data-id="ZTnYVDn7RD4" data-s="62" data-e="86" aria-label="Play Squeeze the bottom, 1:02 to 1:26">
+        <img src="https://i.ytimg.com/vi/ZTnYVDn7RD4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">1:02–1:26</span><span class="secs">24 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Knees</span><h3 id="sec3-4-h">Heel slide, a little</h3><p>One leg at a time. Slide the heel up a little, then back down. Slow.</p>
+      <div class="vid"><button class="facade" type="button" data-id="ZTnYVDn7RD4" data-s="86" data-e="120" aria-label="Play Heel slide, a little, 1:26 to 2:00">
+        <img src="https://i.ytimg.com/vi/ZTnYVDn7RD4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">1:26–2:00</span><span class="secs">34 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Hips</span><h3 id="sec3-5-h">Toes out and in</h3><p>Turn the toes out, then back in.</p>
+      <div class="vid"><button class="facade" type="button" data-id="ZTnYVDn7RD4" data-s="120" data-e="141" aria-label="Play Toes out and in, 2:00 to 2:21">
+        <img src="https://i.ytimg.com/vi/ZTnYVDn7RD4/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">2:00–2:21</span><span class="secs">21 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+  </div>
+  <p class="full"><a href="https://www.youtube.com/watch?v=ZTnYVDn7RD4" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/></svg>Open the full video on YouTube</a></p>
+</section>
+
+<!-- 4 -->
+<section class="sec" id="sec4" aria-labelledby="sec4-h">
+  <div class="sec__head"><span class="sec__num">4</span><div>
+    <h2 id="sec4-h">Gentle finish</h2>
+    <p class="sec__lead">Slow and easy, to end the session.</p>
+  </div></div>
+  <div class="src"><span class="src__chip">NewYork-Presbyterian Hospital</span></div>
+  <div class="grid">
+    <article class="ex"><span class="tag">Ankles</span><h3 id="sec4-1-h">Ankle circles</h3><p>5 circles out, then 5 circles in.</p>
+      <div class="vid"><button class="facade" type="button" data-id="l0AvET5qKuQ" data-s="291" data-e="323" aria-label="Play Ankle circles, 4:51 to 5:23">
+        <img src="https://i.ytimg.com/vi/l0AvET5qKuQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">4:51–5:23</span><span class="secs">32 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Hips</span><h3 id="sec4-2-h">Legs turn out and in</h3><p>Knees straight. Toes point out, pause, then in. 10 times.</p>
+      <div class="vid"><button class="facade" type="button" data-id="l0AvET5qKuQ" data-s="323" data-e="395" aria-label="Play Legs turn out and in, 5:23 to 6:35">
+        <img src="https://i.ytimg.com/vi/l0AvET5qKuQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">5:23–6:35</span><span class="secs">72 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Hands</span><h3 id="sec4-3-h">Wrist circles</h3><p>Elbows a little bent. 5 circles out, then 5 in.</p>
+      <div class="vid"><button class="facade" type="button" data-id="l0AvET5qKuQ" data-s="395" data-e="432" aria-label="Play Wrist circles, 6:35 to 7:12">
+        <img src="https://i.ytimg.com/vi/l0AvET5qKuQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">6:35–7:12</span><span class="secs">37 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Shoulders</span><h3 id="sec4-4-h">Shoulder rolls</h3><p>Roll the shoulders up and back. 10 times.</p>
+      <div class="vid"><button class="facade" type="button" data-id="l0AvET5qKuQ" data-s="432" data-e="505" aria-label="Play Shoulder rolls, 7:12 to 8:25">
+        <img src="https://i.ytimg.com/vi/l0AvET5qKuQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">7:12–8:25</span><span class="secs">73 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+  </div>
+  <p class="full"><a href="https://www.youtube.com/watch?v=l0AvET5qKuQ&amp;t=279s" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/></svg>Open the full video on YouTube</a> (our part starts at 4:39)</p>
+</section>
+
+<!-- 5 -->
+<section class="sec sec--later" id="sec5" aria-labelledby="sec5-h">
+  <div class="sec__head"><span class="sec__num">5</span><div>
+    <h2 id="sec5-h">Legs, next level</h2>
+    <p class="sec__lead">Only when section 3 is easy for her. Skip the small sit-up at 0:40. The player here stops before it.</p>
+  </div></div>
+  <div class="src"><span class="src__chip">NewYork-Presbyterian Hospital · 2:47</span></div>
+  <div class="grid">
+    <article class="ex"><span class="tag">Hips</span><h3 id="sec5-1-h">Leg out and in</h3><p>Slide the leg out to the side, then back in. Stop at 0:40: skip the sit-up that comes next.</p>
+      <div class="vid"><button class="facade" type="button" data-id="nX7ydOeNsoM" data-s="0" data-e="40" aria-label="Play Leg out and in, 0:00 to 0:40">
+        <img src="https://i.ytimg.com/vi/nX7ydOeNsoM/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">0:00–0:40</span><span class="secs">40 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Knees</span><h3 id="sec5-2-h">Full heel slide</h3><p>Bring the heels up until the knees are bent, then down.</p>
+      <div class="vid"><button class="facade" type="button" data-id="nX7ydOeNsoM" data-s="80" data-e="105" aria-label="Play Full heel slide, 1:20 to 1:45">
+        <img src="https://i.ytimg.com/vi/nX7ydOeNsoM/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">1:20–1:45</span><span class="secs">25 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Back</span><h3 id="sec5-3-h">Knees side to side</h3><p>Knees bent. Let them go gently to one side, then the other.</p>
+      <div class="vid"><button class="facade" type="button" data-id="nX7ydOeNsoM" data-s="105" data-e="130" aria-label="Play Knees side to side, 1:45 to 2:10">
+        <img src="https://i.ytimg.com/vi/nX7ydOeNsoM/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">1:45–2:10</span><span class="secs">25 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+    <article class="ex"><span class="tag">Hips</span><h3 id="sec5-4-h">Knee falls out and in</h3><p>Let one knee fall out to the side, then back in. Then the other leg.</p>
+      <div class="vid"><button class="facade" type="button" data-id="nX7ydOeNsoM" data-s="130" data-e="167" aria-label="Play Knee falls out and in, 2:10 to 2:47">
+        <img src="https://i.ytimg.com/vi/nX7ydOeNsoM/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="480" height="360">
+        <span class="play"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg></span><span class="range">2:10–2:47</span><span class="secs">37 sec</span></button></div>
+      <button class="again" type="button" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"/><path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg>Play again</button></article>
+  </div>
+  <p class="full"><a href="https://www.youtube.com/watch?v=nX7ydOeNsoM" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/></svg>Open the full video on YouTube</a> (skip the sit-up at 0:40)</p>
+</section>
+
+<section class="panel" aria-labelledby="no-h" style="margin-top:40px">
+  <h2 id="no-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/></svg>When she does not want to</h2>
+  <ul class="list">
+    <li>Accept "no". Try again in about an hour, in a different way.</li>
+    <li>Give her a choice: "Hands or legs?"</li>
+    <li>Put on music she likes. Praise every try.</li>
+    <li>A small goal is fine: "3 ankle pumps."</li>
+    <li>Do small movements during care you already do (washing, turning).</li>
+  </ul>
+</section>
+
+<section class="panel panel--stop" aria-labelledby="stop-h">
+  <h2 id="stop-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9v4"/><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z"/><path d="M12 16h.01"/></svg>Stop, tell the nurse, then the family</h2>
+  <ul class="stop-list">
+    <li>Pain, or she grimaces</li>
+    <li>Short of breath</li>
+    <li>Dizzy, pale or sweating</li>
+    <li>Chest pain</li>
+    <li>A tube or bag pulls or leaks</li>
+    <li>The arm with the line hurts or swells</li>
+    <li>A dressing is wet or loose</li>
+    <li>One leg suddenly swollen, red or warm</li>
+    <li>She says stop</li>
+  </ul>
+</section>
+
+<section class="panel panel--film" aria-labelledby="film-h">
+  <h2 id="film-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2"/><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></svg>Filming: before you film, tell her</h2>
+  <p class="quote">I am taking a short video for the family, so they can see how strong you are getting.</p>
+  <p class="film-note">Send the video to the family on WhatsApp.</p>
+</section>
+
+<section class="panel panel--family" aria-labelledby="family-h">
+  <h2 id="family-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"/></svg>When family visits</h2>
+  <p>Family members want to do the arm movements with her too. When they visit, show them "Arms up and down" and do one session together.</p>
+  <a class="btn-go" href="#arms-up"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v16l13 -8z"/></svg>Go to "Arms up and down"</a>
+</section>
+
+<section class="panel" aria-labelledby="log-h">
+  <h2 id="log-h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 9h8"/><path d="M8 13h6"/><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"/></svg>Add one line to the daily message</h2>
+  <p style="margin:8px 0 0">Add this line to the evening message to the family:</p>
+  <p class="logline" id="logLine">Exercises: how many sessions · how many minutes · which ones · how she was</p>
+  <button class="btn-copy" id="copyLog" type="button"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z"/><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1"/></svg>Copy the line</button>
+</section>
+
+<p class="foot">Videos checked 04.10.2026. Videos by MD Anderson Cancer Center, NewYork-Presbyterian Hospital and More Life Health, played from YouTube.</p>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+(function () {
+  /* today's session boxes: per-viewer convenience only, safe without storage */
+  var key = "bed-exercises-" + new Date().toISOString().slice(0, 10);
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(key) || "{}"); } catch (e) { state = {}; }
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("#today input"));
+  function render() {
+    var n = 0;
+    boxes.forEach(function (b) {
+      b.checked = !!state[b.dataset.n];
+      b.parentNode.classList.toggle("on", b.checked);
+      if (b.checked) n++;
+    });
+    document.getElementById("todayNote").textContent = n ? n + " of 4 sessions done today" : "Tap a box after each session today.";
+  }
+  boxes.forEach(function (b) {
+    b.addEventListener("change", function () {
+      if (b.checked) state[b.dataset.n] = 1; else delete state[b.dataset.n];
+      try { localStorage.setItem(key, JSON.stringify(state)); } catch (e) {}
+      render();
+    });
+  });
+  render();
+
+  /* in-page players: thumbnail first, iframe only after a tap; one player at a time */
+  var active = null; /* { box, facade, again } */
+  function srcFor(f) {
+    return "https://www.youtube-nocookie.com/embed/" + f.dataset.id + "?start=" + f.dataset.s + "&end=" + f.dataset.e +
+      "&autoplay=1&playsinline=1&rel=0";
+  }
+  function stopActive() {
+    if (!active) return;
+    var fr = active.box.querySelector("iframe");
+    if (fr) active.box.replaceChild(active.facade, fr);
+    active.again.hidden = true;
+    active = null;
+  }
+  function play(facade) {
+    var box = facade.parentNode;
+    var card = box.parentNode;
+    var again = card.querySelector(".again");
+    var title = card.querySelector("h3").textContent;
+    stopActive();
+    var fr = document.createElement("iframe");
+    fr.src = srcFor(facade);
+    fr.title = title + " (video)";
+    fr.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+    fr.setAttribute("allowfullscreen", "");
+    fr.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+    box.replaceChild(fr, facade);
+    again.hidden = false;
+    active = { box: box, facade: facade, again: again };
+  }
+  document.addEventListener("click", function (ev) {
+    var f = ev.target.closest(".facade");
+    if (f) { play(f); return; }
+    var a = ev.target.closest(".again");
+    if (a) {
+      var card = a.parentNode;
+      var fr = card.querySelector(".vid iframe");
+      if (fr && active && active.box === fr.parentNode) {
+        var src = srcFor(active.facade);
+        fr.src = "about:blank";
+        setTimeout(function () { fr.src = src; }, 30);
+      }
+    }
+  });
+
+  /* copy the daily line */
+  function toast(msg) { var t = document.getElementById("toast"); t.textContent = msg; t.style.opacity = 1; setTimeout(function () { t.style.opacity = 0; }, 1800); }
+  function selectLine() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById("logLine"));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    toast("Selected. Copy it from the menu");
+  }
+  document.getElementById("copyLog").addEventListener("click", function () {
+    var text = document.getElementById("logLine").textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { toast("Copied"); }, selectLine);
+    } else { selectLine(); }
+  });
+})();
+</script>
+</body>
+</html>
